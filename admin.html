@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media Admin | Sachin Chaudhary</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="admin-body">
+
+<div class="admin-shell">
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="admin-sidebar">
+    <div class="brand">Media Admin</div>
+    <ul class="admin-nav">
+      <li><button type="button" class="is-active" data-panel="images" id="navImages">🖼️ Images</button></li>
+      <li><button type="button" data-panel="videos" id="navVideos">🎬 Videos</button></li>
+    </ul>
+  </aside>
+
+  <!-- ===================== MAIN ===================== -->
+  <main class="admin-main">
+    <div class="admin-note">
+      <strong>Note:</strong> This is a front-end planning/admin view only — nothing here is saved.
+      To actually add or remove files, update the files inside <code>media/images/</code> and
+      <code>media/videos/</code> on the server, and mirror the changes in the
+      <code>images</code> / <code>videos</code> arrays in <code>assets/js/main.js</code> (and this page's <code>admin.js</code>).
+    </div>
+
+    <!-- ---------- IMAGES PANEL ---------- -->
+    <section class="admin-panel is-active" id="panelImages">
+      <div class="admin-panel-head">
+        <h2>Images</h2>
+        <button class="btn btn-primary" id="addImageBtn">+ Add Image</button>
+      </div>
+      <div class="admin-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Preview</th>
+              <th>Title</th>
+              <th>File name</th>
+              <th>Description</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="imagesTableBody">
+            <!-- JS renders rows here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ---------- VIDEOS PANEL ---------- -->
+    <section class="admin-panel" id="panelVideos">
+      <div class="admin-panel-head">
+        <h2>Videos</h2>
+        <button class="btn btn-primary" id="addVideoBtn">+ Add Video</button>
+      </div>
+      <div class="admin-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Preview</th>
+              <th>Title</th>
+              <th>File name</th>
+              <th>Description</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="videosTableBody">
+            <!-- JS renders rows here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ===================== ADD/EDIT MODAL ===================== -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h3 id="modalTitle">Add Image</h3>
+    <form id="mediaForm">
+      <div class="field">
+        <label for="mf-title">Title</label>
+        <input type="text" id="mf-title" required>
+      </div>
+      <div class="field">
+        <label for="mf-filename">File name (as placed in the media folder)</label>
+        <input type="text" id="mf-filename" placeholder="e.g. photo-1.jpg" required>
+      </div>
+      <div class="field">
+        <label for="mf-description">Description</label>
+        <textarea id="mf-description" rows="3"></textarea>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" id="modalCancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

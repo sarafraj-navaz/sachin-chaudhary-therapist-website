@@ -25,6 +25,7 @@ const videos = [
   { id: 1, fileName: "video-1.mp4", title: "Video 1", description: "" },
   { id: 2, fileName: "video-2.mp4", title: "Video 2", description: "" },
   { id: 3, fileName: "video-3.mp4", title: "Video 3", description: "" },
+  { id: 4, fileName: "video-4.mp4", title: "Video 4", description: "" },
 ];
 
 const IMG_PATH = "media/images/";

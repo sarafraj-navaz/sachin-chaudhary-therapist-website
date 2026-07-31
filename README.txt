@@ -12,7 +12,7 @@ FOLDER STRUCTURE
 
 CONTACT DETAILS CURRENTLY SET
   Phone/WhatsApp : +91 93100 91674 (wa.me link on the Contact section + footer)
-  Email          : sarafrajnavaz.hmfa@gmail.com
+  Email          : Chaudharysachin9453@gmail.com
   Instagram      : https://www.instagram.com/mindtalkswithsachin/
   Location       : Prayagraj, India
 
@@ -35,7 +35,7 @@ CONTACT FORM → SENDS TO YOUR GMAIL (one-time setup, 2 minutes)
   so the form uses Web3Forms — a free service made exactly for this.
   No backend code, no signup fees:
     1. Go to https://web3forms.com
-    2. Enter sarafrajnavaz.hmfa@gmail.com and click "Create Access Key"
+    2. Enter Chaudharysachin9453@gmail.com and click "Create Access Key"
     3. Copy the access key emailed to you
     4. Open index.html, find the contact <form>, and replace
        YOUR_WEB3FORMS_ACCESS_KEY with your real key (one line, near the

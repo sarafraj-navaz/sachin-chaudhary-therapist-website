@@ -19,6 +19,16 @@
   --line:        #DCD5C4;   /* hairline borders               */
   --white:       #FFFFFF;
 
+  /* ---- Surfaces that flip in dark mode (edit dark values below) ---- */
+  --surface:     var(--white); /* cards: spec-card, contact-form, video-card, etc. */
+  --header-bg:   rgba(247,244,238,.88);
+  --overlay-bg:  rgba(20,22,20,.88);       /* lightbox / dark overlays */
+  --btn-hover-bg: var(--ink);              /* btn-primary hover background */
+  --msg-success-bg: #E9F1EA;
+  --msg-error-bg:   #FBEAE8;
+  --msg-error-ink:  #B33A2E;
+  --shadow-soft: 0 14px 28px -18px rgba(46,51,48,.25);
+
   /* ---- Type ---- */
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -33,6 +43,38 @@
   /* ---- Motion ---- */
   --ease: cubic-bezier(.4,0,.2,1);
 }
+
+/* ===================================================================
+   DARK THEME
+   Toggled by setting data-theme="dark" on <html> (see theme toggle
+   script in main.js). Only the tokens that need to flip are redefined
+   here — everything else (spacing, radii, fonts) stays the same.
+=================================================================== */
+[data-theme="dark"]{
+  --sage:        #8FB09E;
+  --sage-deep:   #A9CBB4;
+  --sky:         #9FC0CB;
+  --sky-deep:    #C3DBE1;
+  --cream:       #1D211F;   /* page background */
+  --sand:        #262B28;   /* card / section-alt background */
+  --ink:         #ECEFEC;   /* primary text */
+  --ink-soft:    #A9B2AC;   /* secondary text */
+  --line:        #38403C;   /* hairline borders */
+  --white:       #FFFFFF;
+
+  --surface:     #262B28;
+  --header-bg:   rgba(20,23,21,.85);
+  --overlay-bg:  rgba(8,10,9,.92);
+  --btn-hover-bg: #10201A;
+  --msg-success-bg: #1F3227;
+  --msg-error-bg:   #3A211F;
+  --msg-error-ink:  #F0A399;
+  --shadow-soft: 0 14px 28px -18px rgba(0,0,0,.55);
+}
+
+/* Respect system preference for first-time visitors who have not
+   picked a theme yet (see main.js — it sets data-theme explicitly
+   once a person toggles or if the OS is set to dark on first visit). */
 
 *, *::before, *::after{ box-sizing: border-box; }
 html{ scroll-behavior: smooth; }
@@ -49,6 +91,7 @@ body{
   background: var(--cream);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  transition: background .3s var(--ease), color .3s var(--ease);
 }
 
 h1,h2,h3,h4{
@@ -98,7 +141,7 @@ button{ font-family: inherit; cursor: pointer; }
 }
 .btn:hover{ transform: translateY(-2px); }
 .btn-primary{ background: var(--sage-deep); color: var(--white); }
-.btn-primary:hover{ background: var(--ink); color: var(--white); }
+.btn-primary:hover{ background: var(--btn-hover-bg); color: var(--white); }
 .btn-outline{ border-color: var(--sage-deep); color: var(--sage-deep); background: transparent; }
 .btn-outline:hover{ background: var(--sage-deep); color: var(--white); }
 
@@ -109,7 +152,7 @@ button{ font-family: inherit; cursor: pointer; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(247,244,238,.88);
+  background: var(--header-bg);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -146,6 +189,8 @@ button{ font-family: inherit; cursor: pointer; }
 .nav-links a:hover::after{ width: 100%; }
 .nav-links a:hover{ color: var(--ink); }
 
+.nav-controls{ display:flex; align-items:center; gap:.7rem; }
+
 .nav-toggle{
   display:none;
   background:none; border:none; padding:.4rem;
@@ -154,6 +199,24 @@ button{ font-family: inherit; cursor: pointer; }
   display:block; width:24px; height:2px; background:var(--ink);
   margin: 5px 0; transition: all .25s var(--ease);
 }
+
+/* ---- Theme toggle (light/dark) ---- */
+.theme-toggle{
+  display:flex; align-items:center; justify-content:center;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--sage-deep);
+  flex-shrink: 0;
+  transition: background .25s var(--ease), border-color .25s var(--ease), transform .25s var(--ease);
+}
+.theme-toggle:hover{ border-color: var(--sage-deep); transform: translateY(-2px); }
+.theme-toggle svg{ width: 19px; height: 19px; }
+.theme-toggle .icon-sun{ display: none; }
+.theme-toggle .icon-moon{ display: block; }
+[data-theme="dark"] .theme-toggle .icon-sun{ display: block; }
+[data-theme="dark"] .theme-toggle .icon-moon{ display: none; }
 
 /* ===================================================================
    HERO
@@ -202,7 +265,7 @@ button{ font-family: inherit; cursor: pointer; }
   font-weight: 600;
   padding: .4em 1em;
   border-radius: 999px;
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--line);
   color: var(--sage-deep);
 }
@@ -249,7 +312,7 @@ button{ font-family: inherit; cursor: pointer; }
 }
 .about-text p{ font-size: 1.02rem; }
 .about-quote{
-  background: var(--white);
+  background: var(--surface);
   border-radius: var(--radius-md);
   padding: 2rem;
   border: 1px solid var(--line);
@@ -277,7 +340,7 @@ button{ font-family: inherit; cursor: pointer; }
   gap: 1.25rem;
 }
 .spec-card{
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   padding: 1.6rem 1.4rem;
@@ -285,7 +348,7 @@ button{ font-family: inherit; cursor: pointer; }
 }
 .spec-card:hover{
   transform: translateY(-4px);
-  box-shadow: 0 14px 28px -18px rgba(46,51,48,.25);
+  box-shadow: var(--shadow-soft);
   border-color: var(--sage);
 }
 .spec-icon{
@@ -333,7 +396,7 @@ button{ font-family: inherit; cursor: pointer; }
   gap: 1.25rem;
 }
 .detail-block{
-  background: var(--white);
+  background: var(--surface);
   border-radius: var(--radius-md);
   padding: 1.5rem;
   border: 1px solid var(--line);
@@ -382,7 +445,7 @@ button{ font-family: inherit; cursor: pointer; }
 /* Lightbox */
 .lightbox{
   position: fixed; inset: 0; z-index: 200;
-  background: rgba(20,22,20,.88);
+  background: var(--overlay-bg);
   display:flex; align-items:center; justify-content:center;
   padding: 2rem;
   opacity: 0; pointer-events: none;
@@ -408,7 +471,7 @@ button{ font-family: inherit; cursor: pointer; }
   gap: 1.5rem;
 }
 .video-card{
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -440,7 +503,7 @@ button{ font-family: inherit; cursor: pointer; }
 .contact-info-item span{ font-size:.88rem; color: var(--ink-soft); }
 
 .contact-form{
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   padding: 2rem;
@@ -464,7 +527,7 @@ button{ font-family: inherit; cursor: pointer; }
 .field input:focus, .field textarea:focus, .field select:focus{
   outline: none;
   border-color: var(--sage-deep);
-  background: var(--white);
+  background: var(--surface);
 }
 .field textarea{ resize: vertical; min-height: 110px; }
 
@@ -472,17 +535,17 @@ button{ font-family: inherit; cursor: pointer; }
   display:none;
   padding: .9em 1.1em;
   border-radius: var(--radius-sm);
-  background: #E9F1EA;
+  background: var(--msg-success-bg);
   color: var(--sage-deep);
   font-size: .9rem;
   font-weight: 600;
 }
 .form-msg.is-visible{ display:block; }
 .form-msg-error{
-  background: #FBEAE8;
-  color: #B33A2E;
+  background: var(--msg-error-bg);
+  color: var(--msg-error-ink);
 }
-.form-msg-error a{ color: #B33A2E; text-decoration: underline; }
+.form-msg-error a{ color: var(--msg-error-ink); text-decoration: underline; }
 .btn[disabled]{ opacity: .65; cursor: not-allowed; transform: none !important; }
 
 /* ===================================================================

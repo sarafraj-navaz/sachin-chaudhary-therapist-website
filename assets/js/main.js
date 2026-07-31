@@ -129,10 +129,11 @@ function renderVideos() {
 }
 
 /* -------------------------------------------------------------
-   3b. THEME TOGGLE — light/dark mode, saved in localStorage.
-   The actual theme is applied as early as possible by a small
-   inline script in <head> (before CSS loads) so there's no flash;
-   this just handles the button click + syncing across tabs.
+   3b. THEME TOGGLE — light/dark mode.
+   Site ALWAYS opens in light theme on every load/refresh/visit —
+   no memory, no OS dark-mode auto-detect. Clicking the toggle only
+   changes the theme for the current page view; reloading the page
+   goes back to light.
 ------------------------------------------------------------- */
 const themeToggle = document.getElementById("themeToggle");
 
@@ -142,22 +143,11 @@ function getTheme() {
 
 function setTheme(theme) {
   document.documentElement.setAttribute("data-theme", theme);
-  try { localStorage.setItem("theme", theme); } catch (e) {}
 }
 
 themeToggle?.addEventListener("click", () => {
   setTheme(getTheme() === "dark" ? "light" : "dark");
 });
-
-// If the visitor hasn't explicitly chosen a theme on this site yet,
-// keep following their OS-level light/dark setting live.
-try {
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-    if (!localStorage.getItem("theme")) {
-      document.documentElement.setAttribute("data-theme", e.matches ? "dark" : "light");
-    }
-  });
-} catch (e) {}
 
 /* -------------------------------------------------------------
    4. NAVIGATION — mobile toggle, smooth scroll, active link

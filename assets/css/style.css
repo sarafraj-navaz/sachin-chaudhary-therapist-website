@@ -565,6 +565,17 @@ button{ font-family: inherit; cursor: pointer; }
 .footer-social a{ color: var(--sage-deep); }
 .footer-social a:hover{ color: var(--ink); }
 .footer-social span{ color: var(--line); }
+.footer-credit{
+  margin-top: .6rem;
+  font-size: .8rem;
+  color: var(--ink-soft);
+}
+.footer-credit a{
+  color: var(--sage-deep);
+  font-weight: 700;
+  text-decoration: none;
+}
+.footer-credit a:hover{ text-decoration: underline; }
 
 /* ===================================================================
    REVEAL ON SCROLL (subtle, respects reduced motion)
